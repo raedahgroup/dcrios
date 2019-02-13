@@ -9,7 +9,7 @@
 import UIKit
 
 class PeerSetTableViewController: UITableViewController {
-
+    
     @IBOutlet weak var peer_ip: UITextField!
     
     override func viewDidLoad() {
@@ -21,6 +21,7 @@ class PeerSetTableViewController: UITableViewController {
         // Do any additional setup after loading the view.
         peer_ip?.text = UserDefaults.standard.string(forKey: "pref_peer_ip") ?? "0.0.0.0"
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.peer_ip.becomeFirstResponder()
@@ -37,29 +38,28 @@ class PeerSetTableViewController: UITableViewController {
             UserDefaults.standard.set(peer_ip.text, forKey: "pref_peer_ip")
             UserDefaults.standard.synchronize()
             self.navigationController?.popViewController(animated: true)
-        }
-        else{
+        } else {
             self.showMessage(title: "Invalid input", userMessage: "please input a valid IP address", buttonTitle: "ok")
         }
-        
-        
     }
+    
     @objc func cancel() -> Void {
         self.navigationController?.popViewController(animated: true)
     }
+    
     func showMessage(title: String,userMessage : String, buttonTitle button:String) {
-        let uiAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
         
+        let uiAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
         let uiAction = UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil)
         
         uiAlert.addAction(uiAction)
         
         self.present(uiAlert, animated: true, completion: nil)
     }
+    
     func isValidIP(s: String) -> Bool {
         let parts = s.components(separatedBy: ".")
-    let nums = parts.flatMap { Int($0) }
-    return parts.count == 4 && nums.count == 4 && nums.filter { $0 >= 0 && $0 < 256}.count == 4
+        let nums = parts.flatMap { Int($0) }
+        return parts.count == 4 && nums.count == 4 && nums.filter { $0 >= 0 && $0 < 256}.count == 4
     }
-
 }

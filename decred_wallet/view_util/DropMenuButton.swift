@@ -46,7 +46,7 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource
         {
             resp = resp.next!
         }
-       // backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+        // backgroundColor = UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
         
         if let vc = resp as? UIViewController
         {
@@ -169,7 +169,7 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource
         let itemLabel = UILabel(frame: CGRect(x: 10, y: 0, width: frame.width - 10, height: frame.height))
         itemLabel.textAlignment = NSTextAlignment.left
         itemLabel.text = items[(indexPath as NSIndexPath).row]
-        itemLabel.font = UIFont(name: "Helvetica Neue", size: 10)
+        itemLabel.font = UIFont(name: "Helvetica Neue", size: 16)
         itemLabel.textColor = UIColor.darkGray
         
         let bgColorView = UIView()

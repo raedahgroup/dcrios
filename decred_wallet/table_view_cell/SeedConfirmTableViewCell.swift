@@ -10,6 +10,7 @@
 import UIKit
 
 class SeedConfirmTableViewCell: UITableViewCell {
+    
     @IBOutlet weak var lbWordTitle: UILabel!
     @IBOutlet weak var btnSeed1: ContouredButton!
     @IBOutlet weak var btnSeed2: ContouredButton!
@@ -21,7 +22,7 @@ class SeedConfirmTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     func setup(num:Int, seedWords:[String], selected: Int){
         btnSeed1.setTitle(seedWords[0], for: .normal)
         btnSeed2.setTitle(seedWords[1], for: .normal)
@@ -30,7 +31,7 @@ class SeedConfirmTableViewCell: UITableViewCell {
         let buttons = [btnSeed1, btnSeed2, btnSeed3]
         let _ = buttons.map({$0?.isSelected = false})
         
-        if selected >= 0 {
+        if (selected >= 0) {
             buttons[selected]?.isSelected = true
         }
         seedWordNumber = num

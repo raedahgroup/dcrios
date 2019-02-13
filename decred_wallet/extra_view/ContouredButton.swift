@@ -9,18 +9,20 @@
 import UIKit
 
 @IBDesignable class ContouredButton: UIButton {
+    
     @IBInspectable var borderColor: UIColor?
     @IBInspectable var borderThick: CGFloat = 2
     @IBInspectable var cornerRadius: CGFloat = 5.0
     @IBInspectable var selectedStateColor: UIColor = #colorLiteral(red: 0.3111695647, green: 0.728333056, blue: 0.215497613, alpha: 1)
     @IBInspectable var backgroundFillColor: UIColor = #colorLiteral(red: 0.9623823762, green: 0.9688158631, blue: 0.9719761014, alpha: 1)
     @IBInspectable var disabledStrokeColor: UIColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+    
     override func draw(_ rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
         
         let stateDependentStrokeColor = isEnabled ? borderColor : disabledStrokeColor
         let selectionDependentStrokeColor = isSelected ? selectedStateColor : stateDependentStrokeColor
         
+        let context = UIGraphicsGetCurrentContext()
         context!.setStrokeColor((selectionDependentStrokeColor ?? UIColor.black).cgColor)
         let lineThick = isSelected ? borderThick + 1 : borderThick
         let corner = isSelected ? cornerRadius + 1 : cornerRadius

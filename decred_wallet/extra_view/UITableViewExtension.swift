@@ -32,7 +32,7 @@ public extension UITableView {
         let nib = UINib(nibName: identifier, bundle: nil)
         self.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
     }
-
+    
     /// Hides extra rows created by UIKit with no data to display.
     @discardableResult public func hideEmptyAndExtraRows() -> UITableView {
         tableFooterView = UIView()
@@ -45,8 +45,6 @@ public extension UITableView {
         return self
     }
 }
-
-import Foundation
 
 // MARK: - Properties
 public extension Bool {

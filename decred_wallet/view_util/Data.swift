@@ -7,6 +7,7 @@
 // license that can be found in the LICENSE file.
 
 import Foundation
+
 extension Data {
     struct HexEncodingOptions: OptionSet {
         let rawValue: Int

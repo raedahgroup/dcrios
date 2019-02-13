@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 open class MenuCell : UITableViewCell {
+    
     class var identifier: String { return String.className(self) }
     @IBOutlet weak var menuImage: UIImageView!
     @IBOutlet weak var lblMenu: UILabel!
@@ -25,43 +26,33 @@ open class MenuCell : UITableViewCell {
         setup()
     }
     
-    open override func awakeFromNib() {
-    }
+    open override func awakeFromNib() {}
     
-    open func setup() {
-    }
+    open func setup() {}
     
     open class func height() -> CGFloat {
         return 60
     }
     
     open func setData(_ data: Any?) {
-        //self.backgroundColor = GlobalConstants.Colors.greenishGrey
         
         if let menuText = data as? String {
             self.lblMenu?.text = menuText
-            if(menuText == "Overview"){
+            if (menuText == "Overview") {
                 self.menuImage?.image = UIImage(named: "overview")
-            }
-            else if(menuText == "Account"){
+            } else if (menuText == "Account") {
                 self.menuImage?.image = UIImage(named: "account")
-            }
-            else if(menuText == "Send"){
+            } else if (menuText == "Send") {
                 self.menuImage?.image = UIImage(named: "send")
-            }
-            else if(menuText == "Receive"){
+            } else if (menuText == "Receive") {
                 self.menuImage?.image = UIImage(named: "receive")
-            }
-            else if(menuText == "Settings"){
+            } else if (menuText == "Settings") {
                 self.menuImage?.image = UIImage(named: "settings")
-            }
-            else if(menuText == "Security"){
+            } else if (menuText == "Security") {
                 self.imageView?.image = UIImage(named: "security")
-            }
-            else if(menuText == "History"){
+            } else if (menuText == "History") {
                 self.menuImage?.image = UIImage(named: "history")
-            }
-            else if(menuText == "Help"){
+            } else if (menuText == "Help") {
                 self.menuImage?.image = UIImage(named: "help")
             }
         }
@@ -76,8 +67,5 @@ open class MenuCell : UITableViewCell {
     }
     
     // ignore the default handling
-    override open func setSelected(_ selected: Bool, animated: Bool) {
-    }
-    
+    override open func setSelected(_ selected: Bool, animated: Bool) {}
 }
-

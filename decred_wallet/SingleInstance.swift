@@ -17,6 +17,4 @@ public class SingleInstance{
         }
         return Static.instance
     }
-    
-    
 }

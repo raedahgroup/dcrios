@@ -7,6 +7,7 @@
 // license that can be found in the LICENSE file.
 
 import Foundation
+
 extension String {
     static func className(_ aClass: AnyClass) -> String {
         return NSStringFromClass(aClass).components(separatedBy: ".").last!

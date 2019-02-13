@@ -9,8 +9,8 @@
 import UIKit
 import PasswordStrength
 
-
 class PinWeakness {
+    
     let passstrength = PinAnalyzer()
     
     func strength(forPin:String) -> Float{
@@ -23,13 +23,13 @@ class PinWeakness {
         let pinStrength = strength(forPin: forPin)
         let colors = [#colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1), #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1), #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1), #colorLiteral(red: 0.6179546118, green: 0.9191936255, blue: 0.6673415303, alpha: 1), #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)]
         let colorIndex = Int(pinStrength * 10.0 / 2.0)
-        print("index is\(colorIndex)")
         
         return colors[min(colorIndex,4)]
     }
 }
 
 class PinAnalyzer {
+    
     var checkRules : [((String) -> Float)]? = []
     init() {
         setupRules()
@@ -53,4 +53,3 @@ class PinAnalyzer {
         })
     }
 }
-

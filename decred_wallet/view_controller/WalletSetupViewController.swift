@@ -30,9 +30,8 @@ class WalletSetupViewController : UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    @IBAction func btn_create_wallet(_ sender: Any) {
-        
-    }
+    
+    @IBAction func btn_create_wallet(_ sender: Any) {}
     
     @IBAction func backToMenu(_:UIStoryboardSegue){}
     

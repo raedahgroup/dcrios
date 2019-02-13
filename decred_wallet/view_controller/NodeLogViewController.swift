@@ -9,12 +9,11 @@
 import UIKit
 
 class NodeLogViewController: UIViewController {
-
+    
     @IBOutlet weak var logTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Node Log"
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -36,6 +35,4 @@ class NodeLogViewController: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
-
-
 }

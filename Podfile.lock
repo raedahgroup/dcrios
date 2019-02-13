@@ -1,9 +1,9 @@
 PODS:
-  - CryptoSwift (0.13.0)
+  - CryptoSwift (0.14.0)
   - JGProgressHUD (2.0.3)
   - MBProgressHUD (1.1.0)
   - PasswordStrength (0.1.0)
-  - QRCodeReader.swift (9.0.1)
+  - QRCodeReader.swift (10.0.0)
   - SlideMenuControllerSwift (4.0.0)
 
 DEPENDENCIES:
@@ -24,11 +24,11 @@ SPEC REPOS:
     - SlideMenuControllerSwift
 
 SPEC CHECKSUMS:
-  CryptoSwift: 16e78bebf567bad1c87b2d58f6547f25b74c31aa
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   PasswordStrength: bf426361d758a89824d056c9fb46c48476289ff9
-  QRCodeReader.swift: 96292a5612fbc2fd9a0b26f93fa5164c8d02f59d
+  QRCodeReader.swift: 74d0378eb0c7807828552b49626bbc8307495aee
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
 
 PODFILE CHECKSUM: b798e69dc2a45c2572dcc216f1d435763ec402a9

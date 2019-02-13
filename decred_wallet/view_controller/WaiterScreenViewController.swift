@@ -18,24 +18,22 @@ protocol WaiterScreenProtocol {
 
 
 class WaiterScreenViewController: UIViewController, WaiterScreenProtocol {
-    var onTapAnimation: (() -> Void)?
-//    private lazy var doubleTap: UITapGestureRecognizer = {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer.init(target: <#T##Any?#>, action: <#T##Selector?#>)
-//    }()
     
+    var onTapAnimation: (() -> Void)?
     var onFinish:(()->Void)?
+    
     var timer: Timer?
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var logo: UIImageView!
+    @IBOutlet weak var girload: UIWebView!
+    
     var  groupAnimation: CAAnimationGroup?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         girload.backgroundColor = UIColor(hex: "#F3F5F6")
-        
-        
-        
     }
-    @IBOutlet weak var girload: UIWebView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,8 +44,7 @@ class WaiterScreenViewController: UIViewController, WaiterScreenProtocol {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-       set(duration: 5)
+        set(duration: 5)
     }
     
     func set(label: String) {
@@ -59,10 +56,10 @@ class WaiterScreenViewController: UIViewController, WaiterScreenProtocol {
             self.stopAnimation()
         })
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         self.dismiss(animated: true, completion: nil)
-        
     }
     
     @IBAction func goToSeetings(_ sender: Any) {
@@ -71,7 +68,6 @@ class WaiterScreenViewController: UIViewController, WaiterScreenProtocol {
     }
     
     func stopAnimation() {
-       // logo.image = nil
         onFinish?()
     }
 }

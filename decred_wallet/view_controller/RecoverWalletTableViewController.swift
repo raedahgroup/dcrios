@@ -8,26 +8,28 @@
 import UIKit
 
 class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
     @IBOutlet var tableView : UITableView!
     @IBOutlet var vDropDownPlaceholder: UIView!
+    @IBOutlet weak var confirm_btn: UIButton!
+    
+    var currentTextField : UITextField?
+    var nextTextField : UITextField?
+    var textFields: [UITextField?] = []
     
     var seedWords: [String?] = []
     var suggestionWords: [String] = []
-    var textFields: [UITextField?] = []
     var seedtmp : [String] = []
-    var currentTextField : UITextField?
-    var nextTextField : UITextField?
     var suggestions: [String] = []
-    let seedtmp2 = "reform aftermath printer warranty gremlin paragraph beehive stethoscope regain disruptive regain Bradbury chisel October trouble forever Algol applicant island infancy physique paragraph woodlark hydraulic snapshot backwater ratchet surrender revenge customer retouch intention minnow"
     var recognizer:UIGestureRecognizer?
+    let seedtmp2 = "reform aftermath printer warranty gremlin paragraph beehive stethoscope regain disruptive regain Bradbury chisel October trouble forever Algol applicant island infancy physique paragraph woodlark hydraulic snapshot backwater ratchet surrender revenge customer retouch intention minnow"
     
-    @IBOutlet weak var confirm_btn: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.confirm_btn.addGestureRecognizer(recognizer!)
         seedtmp = loadSeedWordsList()
         registerObserverForKeyboardNotification()
         recognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressHappened))
-        self.confirm_btn.addGestureRecognizer(recognizer!)
     }
     
     // MARK: - Table view data source
@@ -51,14 +53,12 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
         let keyboardFrame = (notificationInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
         let f = tableView.frame
         tableView.frame = CGRect(x: f.origin.x, y: f.origin.y, width: f.size.width, height: f.size.height - keyboardFrame.size.height + (tableView.tableHeaderView?.frame.size.height)! )
-        
     }
     
     @objc func onKeyboardWillHide(_ notification: Notification){
         let f = view.frame
         tableView.frame = CGRect(x: 0, y: 0, width: f.size.width, height: f.size.height)
     }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -69,6 +69,7 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "seedWordCell", for: indexPath) as? RecoveryWalletSeedWordsCell
         cell?.setup(wordNum: indexPath.row, word: seedWords.count <= indexPath.row ? "" : seedWords[indexPath.row] ?? "", seed: seedtmp, placeholder: vDropDownPlaceholder)
         cell?.tfSeedWord.isEnabled = (indexPath.row == 0 || textFields.count < indexPath.row)
@@ -80,6 +81,7 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
         }
         
         cell?.onPickUpSeed = {(index, pickedSeedWord) in
+            
             cell?.tfSeedWord.text = pickedSeedWord
             self.seedWords.append(pickedSeedWord)
             cell?.hideDropDown()
@@ -92,30 +94,29 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
                 next?.tfSeedWord.becomeFirstResponder()
                 tableView.scrollToRow(at: nextIndexPath, at: .middle, animated: true)
                 next?.updatePlaceholder(vertPosition: Int(self.dropdownPosition(for: nextIndexPath)))
-            }else{
+            } else {
                 cell?.tfSeedWord.resignFirstResponder()
             }
         }
+        
         return cell!
     }
     
     private func dropdownPosition(for indexPath:IndexPath) -> CGFloat{
+        
         let scrollOffset = self.tableView.contentOffset
-        print("conent offset:\(scrollOffset)")
         
         let nextCellPos = self.tableView.rectForRow(at: indexPath)
         let dropDownHeight = vDropDownPlaceholder.frame.size.height
         
         let res = nextCellPos.origin.y - scrollOffset.y
-        if indexPath.row < 3{
+        if (indexPath.row < 3) {
             return nextCellPos.origin.y + nextCellPos.size.height + 20
-        }else if indexPath.row > 28 {
-            print("flipped res:\(res)")
+        } else if (indexPath.row > 28) {
             return res - dropDownHeight + nextCellPos.size.height * 3
-        }else{
-            print("res:\(res)")
-            return res
         }
+        
+        return res
     }
     
     private func checkupSeed(){
@@ -131,6 +132,7 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
     private func loadSeedWordsList() -> [String]{
         let seedWordsPath = Bundle.main.path(forResource: "wordlist", ofType: "txt")
         let seedWords = try? String(contentsOfFile: seedWordsPath ?? "")
+        
         return seedWords?.split{$0 == "\n"}.map(String.init) ?? []
     }
     
@@ -142,19 +144,19 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
         seedWords = []
         tableView.reloadData()
     }
+    
     var count = 0
     @objc func longPressHappened(){
         view.endEditing(true)
-        print("button pressed long tap")
         count = count + 1
-        if count == 1{
+        if (count == 1){
             let flag = SingleInstance.shared.wallet?.verifySeed(seedtmp2)
             if flag! {
                 performSegue(withIdentifier: "confirmSeedSegue", sender: nil)
                 return
-            } else {
-                show(error: "Seed was not verifed!")
             }
+            
+            show(error: "Seed was not verifed!")
         }
         
     }
@@ -171,13 +173,12 @@ class RecoverWalletTableViewController: UIViewController, UITableViewDelegate, U
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "confirmSeedSegue"{
+        if segue.identifier == "confirmSeedSegue" {
             var vc = segue.destination as? SeedCheckupProtocol
             vc?.seedToVerify = seedWords.reduce("", { x, y in  x + " " + y!})
-            if count == 1{
+            if (count == 1) {
                 vc?.seedToVerify = seedtmp2
             }
-            
         }
     }
 }

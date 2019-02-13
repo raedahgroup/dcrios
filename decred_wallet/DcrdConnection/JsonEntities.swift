@@ -22,27 +22,27 @@ extension BalanceEntity {
     var dcrTotal: Double {
         return self.Total / 100000000
     }
-
+    
     var dcrSpendable: Double {
         return self.Spendable / 100000000
     }
-
+    
     var dcrImmatureReward: Double {
         return self.ImmatureReward / 100000000
     }
-
+    
     var dcrImmatureStakeGeneration: Double {
         return self.ImmatureStakeGeneration / 100000000
     }
-
+    
     var dcrLockedByTickets: Double {
         return self.LockedByTickets / 100000000
     }
-
+    
     var dcrVotingAuthority: Double {
         return self.VotingAuthority / 100000000
     }
-
+    
     var dcrUnConfirmed: Double {
         return self.UnConfirmed / 100000000
     }
@@ -56,14 +56,14 @@ struct AccountsEntity: Decodable {
     var ExternalKeyCount = 20
     var InternalKeyCount = 20
     var ImportedKeyCount = 0
-
+    
     func makeDefault() {
         UserDefaults.standard.set(self.Number, forKey: "wallet_default")
     }
-
+    
     var isDefaultWallet: Bool {
         let `default` = UserDefaults.standard.integer(forKey: "wallet_default")
-
+        
         return `default` == self.Number ? true : false
     }
 }
@@ -88,7 +88,7 @@ struct GroceryProduct: Codable {
     var name: String
     var points: Int
     var description: String
-
+    
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try values.decode(String.self, forKey: .name)
@@ -132,7 +132,7 @@ struct Transaction: Codable {
     var Height: Int
     var Debits: [Debit]
     var Credits: [Credit]
-   @nonobjc var Animate: Bool
+    @nonobjc var Animate: Bool
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.Hash = try values.decodeIfPresent(String.self, forKey: .Hash) ?? ""
@@ -177,7 +177,7 @@ struct Debit: Codable {
     var PreviousAccount: Double = 0.0
     var PreviousAmount: Double = 0.0
     var AccountName = ""
-
+    
     // var Address = ""
 }
 
@@ -194,7 +194,7 @@ extension GetTransactionResponse {
         }
         return timeline
     }
-
+    
     func transaction(by hash: String) -> Transaction? {
         return self.Transactions.filter({ $0.Hash == hash }).first
     }

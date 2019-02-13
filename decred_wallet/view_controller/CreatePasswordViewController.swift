@@ -11,7 +11,9 @@ import JGProgressHUD
 import Dcrlibwallet
 
 class CreatePasswordViewController: UIViewController, SeedCheckupProtocol, UITextFieldDelegate {
+    
     var seedToVerify: String?
+    
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var tfVerifyPassword: UITextField!
     @IBOutlet weak var btnEncrypt: UIButton!
@@ -20,12 +22,9 @@ class CreatePasswordViewController: UIViewController, SeedCheckupProtocol, UITex
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         //IQKeyboardManager.shared().isEnabled = false
         tfPassword.delegate = self
         tfVerifyPassword.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
-    
-    
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         validatePassword()
@@ -49,9 +48,12 @@ class CreatePasswordViewController: UIViewController, SeedCheckupProtocol, UITex
     }
     
     @IBAction func onEncrypt(_ sender: Any) {
+        
         progressHud = showProgressHud(with: "creating wallet...")
+        
         let seed = self.seedToVerify!
         let pass = self.tfPassword!.text
+        
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let this = self else { return }
             
@@ -63,11 +65,9 @@ class CreatePasswordViewController: UIViewController, SeedCheckupProtocol, UITex
                 DispatchQueue.main.async {
                     self!.progressHud?.dismiss()
                     UserDefaults.standard.set(pass, forKey: "password")
-                    print("wallet created")
                     createMainWindow()
                     this.dismiss(animated: true, completion: nil)
                 }
-                print("done")
                 return
             } catch let error {
                 DispatchQueue.main.async {
@@ -88,5 +88,4 @@ class CreatePasswordViewController: UIViewController, SeedCheckupProtocol, UITex
         alert.addAction(okAction)
         present(alert, animated: true, completion: {self.progressHud!.dismiss()})
     }
-    
 }

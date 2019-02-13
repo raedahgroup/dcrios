@@ -18,23 +18,20 @@ class PinMarksView: UIStackView {
         entered = 0
         
         super.init(frame: frame)
-       // self.addArrangedSubview(numberw)
-        
     }
     
     required init(coder: NSCoder) {
         total = 5
         entered = 0
-       
+        
         super.init(coder: coder)
-       // self.addArrangedSubview(numberw)
     }
-
+    
     override func draw(_ rect: CGRect) {
-         super.alignment = .center
+        super.alignment = .center
         update()
-       
     }
+    
     func removeBtn(){
         self.removeArrangedSubview(numberw)
     }
@@ -43,30 +40,27 @@ class PinMarksView: UIStackView {
         self.alignment = .center
         drawCells(in: frame)
     }
+    
     func drawCells(in rect:CGRect){
-        
         let h = rect.size.height
         var w = rect.size.width / CGFloat(total) - space
-     
+        
         if self.arrangedSubviews.count > 0{
-           self.removeArrangedSubview(numberw)
+            self.removeArrangedSubview(numberw)
         }
+        
         self.layer.sublayers?.removeAll()
         numberw.text = ""
-        if entered == 0 {return}
-        print("numbered entered \(entered)")
-        if(entered > 0 && entered < 6){
-            
+        
+        if entered == 0 {
+            return
+        } else if (entered > 0 && entered < 6) {
             for i in 0...(min((entered - 1),4)) {
                 let cellRect = CGRect(x: CGFloat(i) * w + space * CGFloat(i), y:0, width: w, height: h)
                 drawActiveCell(rect: cellRect)
                 w = rect.size.width / CGFloat(total) - space
-                print("number of circle \(i)")
-                
             }
-            
-        }
-        else{
+        } else {
             numberw = UILabel()
             numberw.text = String(entered)
             self.alignment = .center
@@ -74,12 +68,11 @@ class PinMarksView: UIStackView {
             numberw.textColor = #colorLiteral(red: 0.2537069321, green: 0.8615272641, blue: 0.7028611302, alpha: 1)
             numberw.font = numberw.font.withSize(25)
             self.addArrangedSubview(numberw)
-            
         }
-        
     }
     
     func drawActiveCell(rect: CGRect){
+        
         let circlePath = UIBezierPath(arcCenter: CGPoint(x: rect.origin.x + rect.size.width / 2, y: rect.size.height / 2), radius: rect.size.width / 2 * 0.7, startAngle: CGFloat(0), endAngle:CGFloat(Double.pi * 2), clockwise: true)
         
         let shapeLayer = CAShapeLayer()
@@ -90,12 +83,5 @@ class PinMarksView: UIStackView {
         shapeLayer.lineWidth = 2
         self.alignment = .center
         self.layer.addSublayer(shapeLayer)
-      //  self.layer.insertSublayer(shapeLayer, at: 0)
-       // shapeLayer.position = CGPoint(x: self.bounds.midX , y: self.bounds.midX)
-        
-        
-        
-        
     }
-
 }

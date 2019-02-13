@@ -10,6 +10,7 @@ import UIKit
 import Dcrlibwallet
 
 class GeneratedSeedDisplayViewController: UIViewController {
+    
     @IBOutlet var vWarningLabel: UILabel!
     @IBOutlet private var seedWordLabels: [UILabel]!
     
@@ -32,7 +33,7 @@ class GeneratedSeedDisplayViewController: UIViewController {
             try
                 self.seed =  (SingleInstance.shared.wallet?.generateSeed())
         } catch {
-           seed = ""
+            seed = ""
         }
         arrWords = (seed.components(separatedBy: " "))
         
@@ -51,7 +52,6 @@ class GeneratedSeedDisplayViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        //navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func unwind(_: UIStoryboardSegue){}
@@ -85,8 +85,6 @@ class GeneratedSeedDisplayViewController: UIViewController {
         outerStackView.center.x = self.view.center.x
         seedContainer.setNeedsLayout()
     }
-    
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

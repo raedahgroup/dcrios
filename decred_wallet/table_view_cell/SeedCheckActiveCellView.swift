@@ -15,10 +15,10 @@ class SeedCheckActiveCellView: UIView {
     @IBOutlet weak var btnSeed1: ContouredButton!
     @IBOutlet weak var btnSeed2: ContouredButton!
     @IBOutlet weak var btnSeed3: ContouredButton!
+    
     var onSeedPick:((Int, String)->Void)?
     
     func setup(seedWords:[String], onSeedPick:@escaping ((Int, String)->Void)){
         self.onSeedPick = onSeedPick
     }
-
 }

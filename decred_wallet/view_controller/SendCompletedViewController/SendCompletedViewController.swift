@@ -7,14 +7,17 @@
 import UIKit
 
 class SendCompletedViewController: UIViewController {
-    @IBOutlet private weak var labelTransactionHash: UILabel!
+    
     var transactionHash: String?
     
+    @IBOutlet private weak var labelTransactionHash: UILabel!
     @IBOutlet weak var vContent: UIView!
+    
     var openDetails: (() -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let layer = view.layer
         
         layer.frame = vContent.frame

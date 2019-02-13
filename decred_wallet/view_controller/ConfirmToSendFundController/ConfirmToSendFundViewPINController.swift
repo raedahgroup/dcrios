@@ -7,9 +7,13 @@
 import UIKit
 
 class ConfirmToSendFundViewPINController: UIViewController {
+    
     @IBOutlet private weak var labelTitle: UILabel!
     @IBOutlet weak var lbMinorDigits: UILabel!
     @IBOutlet weak var vContent: UIView!
+    
+    var confirm: (()->Void)?
+    var cancel: (()->Void)?
     
     var amount: Double = 0.0 {
         willSet (newValue) {
@@ -17,9 +21,6 @@ class ConfirmToSendFundViewPINController: UIViewController {
             lbMinorDigits?.text = minor(amount: newValue)
         }
     }
-    
-    var confirm: (()->Void)?
-    var cancel: (()->Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()

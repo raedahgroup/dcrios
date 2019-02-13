@@ -8,8 +8,7 @@
 
 import UIKit
 
-class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransactionsResponseProtocol {
-    
+class TransactionHistoryViewController: UIViewController, DcrlibwalletGetTransactionsResponseProtocol {
     
     var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -20,11 +19,12 @@ class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransact
         
         return refreshControl
     }()
-   
+    
     weak var delegate: LeftMenuProtocol?
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var btnFilter: DropMenuButton!
+    
     var visible:Bool = false
     
     let filterMenu = ["ALL", "Regular", "Ticket", "Votes", "Revokes", "Sent"] as [String]
@@ -33,27 +33,22 @@ class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransact
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // self.tableView.addSubview(self.refreshControl)
-        
         
         btnFilter.initMenu(filterMenu) { [weak self] index, value in
             guard let this = self else { return }
-            print("index : \(index), Value : \(value)")
         }
-       
-        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //setNavigationBarItem()
         self.setNavigationBarItem()
         navigationItem.title = "History"
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         self.visible = true
-         prepareRecent()
+        prepareRecent()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -66,6 +61,7 @@ class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransact
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
     func prepareRecent(){
         self.mainContens.removeAll()
         DispatchQueue.global(qos: .background).async { [weak self] in
@@ -73,49 +69,34 @@ class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransact
             do {
                 try
                     SingleInstance.shared.wallet?.getTransactions(this)
-                print("done getting transaction")
             } catch let Error {
                 print(Error)
             }
         }
     }
+    
     func onResult(_ json: String!) {
-        print("on result")
-        if(self.visible == false){
-            print("on result returning")
+        
+        if (self.visible == false) {
             return
-        }
-        else{
-            print("on result running")
+        } else {
             DispatchQueue.main.async { [weak self] in
                 guard let this = self else { return }
                 do {
                     let trans = GetTransactionResponse.self
                     let transactions = try JSONDecoder().decode(trans, from: json.data(using: .utf8)!)
-                    print("on result decoded")
                     if (transactions.Transactions.count) > 0 {
-                        print("on result decoded")
                         if transactions.Transactions.count > this.mainContens.count {
-                            print(transactions.Transactions.count)
-                            print("new transaction OnResult")
                             print(this.mainContens.count)
                             this.mainContens.removeAll()
-                            print("decoding")
                             for transactionPack in transactions.Transactions {
                                 self?.mainContens.append(transactionPack)
-                                /* for creditTransaction in transactionPack.Credits {
-                                 this.mainContens.append("\(creditTransaction.dcrAmount) DCR")
-                                 }
-                                 for debitTransaction in transactionPack.Debits {
-                                 this.mainContens.append("-\(debitTransaction.dcrAmount) DCR")
-                                 }*/
                             }
                             this.mainContens.reverse()
                             this.tableView.reloadData()
                             
                         }
                     }
-                    
                 } catch let error {
                     print("onresult error")
                     print(error)
@@ -126,19 +107,20 @@ class TransactionHistoryViewController: UIViewController,DcrlibwalletGetTransact
     
     
     /*
-    // MARK: - Navigation
+     // MARK: - Navigation
      
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
 
 // MARK: - Table Delegates
 
 extension TransactionHistoryViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mainContens.count
     }
@@ -146,15 +128,14 @@ extension TransactionHistoryViewController: UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return TransactionHistoryTableViewCell.height()
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "TransactionFullDetailsViewController", bundle: nil)
         let subContentsVC = storyboard.instantiateViewController(withIdentifier: "TransactionFullDetailsViewController") as! TransactionFullDetailsViewController
-        print("index is")
-        print(indexPath.row)
         if self.mainContens.count == 0{
-            print("error")
             return
         }
+        
         subContentsVC.transaction = self.mainContens[indexPath.row]
         self.navigationController?.pushViewController(subContentsVC, animated: true)
     }
@@ -167,7 +148,7 @@ extension TransactionHistoryViewController: UITableViewDataSource, UITableViewDe
             cell.setData(data)
             return cell
         }
-        return cell
         
+        return cell
     }
 }

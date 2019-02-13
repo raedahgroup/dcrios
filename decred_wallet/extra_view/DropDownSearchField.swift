@@ -22,6 +22,7 @@ protocol SearchDataSourceProtocol: class {
 }
 
 class DropDownListDataSource: NSObject,  DropDownResultsListProtocol {
+    
     var onSelect: ((Int, String) -> Void)?
     var items: [String]?
     var cellIdentifier: String = ""
@@ -58,6 +59,7 @@ class DropDownListDataSource: NSObject,  DropDownResultsListProtocol {
 }
 
 class DropDownSearchField: UITextField, UITextFieldDelegate, SearchDataSourceProtocol {
+    
     var onTextChanged: (() -> Void)?
     var dropDownListPlaceholder: UIView?
     var itemsToSearch: [String]?

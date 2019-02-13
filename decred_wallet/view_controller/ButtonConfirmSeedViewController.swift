@@ -7,12 +7,12 @@
 // license that can be found in the LICENSE file.
 import UIKit
 
-
 protocol SeedCheckupProtocol {
     var seedToVerify: String?{get set}
 }
 
 class ButtonConfirmSeedViewController: UIViewController, SeedCheckupProtocol {
+    
     var seedToVerify: String?
     var selectedSeedWords: [Int] = []
     var allWords: [String] = []
@@ -28,7 +28,6 @@ class ButtonConfirmSeedViewController: UIViewController, SeedCheckupProtocol {
             selectedSeedWords.append(-1)
             enteredWords.append("")
         }
-   
     }
     
     @IBAction func onConfirm(_ sender: Any) {
@@ -48,7 +47,7 @@ class ButtonConfirmSeedViewController: UIViewController, SeedCheckupProtocol {
             securityvc?.seedToVerify = enteredWords.joined(separator: " ")
         }
     }
- 
+    
     private func showError(error:String){
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
@@ -80,12 +79,13 @@ extension ButtonConfirmSeedViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 33
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "tripleSeedCell", for: indexPath) as? SeedConfirmTableViewCell
         cell?.setup(num: indexPath.row, seedWords: breakdownByThree(row: indexPath.row), selected:pickSelected(row: indexPath.row))
+        
         cell?.onPick = {(index, seedWord) in
-           
             self.selectedSeedWords[indexPath.row] = index
             self.enteredWords[indexPath.row] = seedWord
             if indexPath.row < 32{
@@ -97,7 +97,7 @@ extension ButtonConfirmSeedViewController: UITableViewDataSource{
         }
         return cell!
     }
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -109,6 +109,7 @@ extension ButtonConfirmSeedViewController: UITableViewDataSource{
         let trueSeedIndex = Int.random(in: 0...2)
         let trueSeed = seed?[row]
         suggestionsWithFake[trueSeedIndex] = trueSeed ?? "dummy"
+        
         let fakeWordsSet = allWords.filter({
             return ($0.lowercased().hasPrefix((String(trueSeed!.first!)).lowercased()))
         })
@@ -121,6 +122,7 @@ extension ButtonConfirmSeedViewController: UITableViewDataSource{
                 fakeIndex += 1
             }
         }
+        
         return  suggestionsWithFake
     }
     

@@ -15,19 +15,20 @@ extension Notification.Name {
 }
 
 func isWalletCreated() -> Bool{
-        let fm = FileManager()
-          let result = fm.fileExists(atPath: NSHomeDirectory()+"/Documents/dcrwallet/testnet3/wallet.db")
-            return result
+    let fm = FileManager()
+    let result = fm.fileExists(atPath: NSHomeDirectory()+"/Documents/dcrwallet/testnet3/wallet.db")
+    return result
 }
+
 func showMsg(error:String,controller: UIViewController){
-   
     let alert = UIAlertController(title: "PIN mismatch", message: error, preferredStyle: .alert)
     let okAction = UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: nil)
     alert.addAction(okAction)
     DispatchQueue.main.async {
-    controller.present(alert, animated: true, completion: nil)
+        controller.present(alert, animated: true, completion: nil)
     }
 }
+
 func createMainWindow(){
     // create viewController code...
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -66,7 +67,8 @@ func saveCertificate(secretKey: String) {
         debugPrint("Could not create certificate file")
     }
 }
-func getPeerAddress(appInstance:UserDefaults)-> String{
+
+func getPeerAddress(appInstance:UserDefaults) -> String{
     let ip = appInstance.string(forKey: "pref_peer_ip")
     if(ip?.elementsEqual(""))!{
         return ""
@@ -74,8 +76,8 @@ func getPeerAddress(appInstance:UserDefaults)-> String{
     else{
         return (ip?.appending(":19108"))!
     }
-    
 }
+
 func generateQRCodeFor(with addres: String, forImageViewFrame: CGRect) -> UIImage? {
     guard let addrData = addres.data(using: String.Encoding.utf8) else {
         return nil
@@ -120,6 +122,7 @@ func generateQRCodeFor(with addres: String, forImageViewFrame: CGRect) -> UIImag
     
     return nil
 }
+
 func spendable(account:AccountsEntity) -> Decimal{
     let bRequireConfirm = UserDefaults.standard.bool(forKey: "pref_spend_fund_switch")
     let iRequireConfirm = (bRequireConfirm ) ? Int32(0) : Int32(2)
@@ -135,11 +138,11 @@ func spendable(account:AccountsEntity) -> Decimal{
     print(Decimal(int64Pointer.move()))
     return Decimal(int64Pointer.move()) / 100000000.0
 }
+
 func loadCertificate() throws ->  String {
     let filePath = NSHomeDirectory() + "/Documents/rpc.cert"
     return try String.init(contentsOfFile: filePath)
 }
-
 
 func getAttributedString(str: String, siz: CGFloat) -> NSAttributedString {
     var tmpString = str
@@ -152,13 +155,12 @@ func getAttributedString(str: String, siz: CGFloat) -> NSAttributedString {
     let TmpDot = tmp2.range(of: ".")
     if((tmpString.length - (TmpDot.location + 1)) == 1){
         tmpString = str.appending("0")
-       
+        
     }
     
     let stt = tmpString.appending(" DCR") as NSString?
     let atrStr = NSMutableAttributedString(string: stt! as String)
     let dotRange = stt?.range(of: ".")
-    //print("Index = \(dotRange?.location)")
     if(tmpString.length > ((dotRange?.location)!+2)) {
         atrStr.addAttribute(NSAttributedStringKey.font,
                             value: UIFont(
@@ -167,7 +169,7 @@ func getAttributedString(str: String, siz: CGFloat) -> NSAttributedString {
                             range: NSRange(
                                 location:(dotRange?.location)!+3,
                                 length:(stt?.length)!-1 - ((dotRange?.location)!+2)))
-       
+        
         atrStr.addAttribute(NSAttributedStringKey.foregroundColor,
                             value: UIColor(hex: "#091440"),
                             range: NSRange(
@@ -177,6 +179,7 @@ func getAttributedString(str: String, siz: CGFloat) -> NSAttributedString {
     }
     return atrStr
 }
+
 extension NSDecimalNumber {
     public func round(_ decimals:Int) -> NSDecimalNumber {
         return self.rounding(accordingToBehavior:
@@ -199,11 +202,10 @@ extension UITableViewCell{
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             [weak self] in
             self?.layer.removeAllAnimations()
-            // your code here
         }
-        
     }
 }
+
 extension UIButton {
     func set(fontSize: CGFloat) {
         if let titleLabel = titleLabel {
@@ -211,4 +213,3 @@ extension UIButton {
         }
     }
 }
-

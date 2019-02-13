@@ -12,11 +12,11 @@ import UIKit
 open class BaseTableViewCell : UITableViewCell {
     
     class var identifier: String {
-        return String.className(self) }
+        return String.className(self)
+    }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -24,8 +24,7 @@ open class BaseTableViewCell : UITableViewCell {
         setup()
     }
     
-    open override func awakeFromNib() {
-    }
+    open override func awakeFromNib() {}
     
     open func setup() {
         self.setData(self)
@@ -37,31 +36,23 @@ open class BaseTableViewCell : UITableViewCell {
     
     open func setData(_ data: Any?) {
         self.backgroundColor = GlobalConstants.Colors.greenishGrey
-        //self.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-       self.textLabel?.textColor = GlobalConstants.Colors.black
+        self.textLabel?.textColor = GlobalConstants.Colors.black
         
-    
         if let menuText = data as? String {
             self.textLabel?.text = menuText
-            if(menuText == "Overview"){
+            if (menuText == "Overview") {
                 self.imageView?.image = UIImage(named: "overview")
-            }
-            else if(menuText == "Account"){
+            } else if (menuText == "Account") {
                 self.imageView?.image = UIImage(named: "account")
-            }
-            else if(menuText == "Send"){
+            } else if (menuText == "Send") {
                 self.imageView?.image = UIImage(named: "send")
-            }
-            else if(menuText == "Receive"){
+            } else if (menuText == "Receive") {
                 self.imageView?.image = UIImage(named: "receive")
-            }
-            else if(menuText == "Settings"){
+            } else if (menuText == "Settings") {
                 self.imageView?.image = UIImage(named: "settings")
-            }
-            else if(menuText == "Security"){
+            } else if (menuText == "Security") {
                 self.imageView?.image = UIImage(named: "left")
-            }
-            else if(menuText == "History"){
+            } else if (menuText == "History") {
                 self.imageView?.image = UIImage(named: "history")
             }
         }
@@ -76,7 +67,5 @@ open class BaseTableViewCell : UITableViewCell {
     }
     
     // ignore the default handling
-    override open func setSelected(_ selected: Bool, animated: Bool) {
-    }
-    
+    override open func setSelected(_ selected: Bool, animated: Bool) {}
 }

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
+    
     func trim(trimRect :CGRect) -> UIImage {
         if CGRect(origin: CGPoint.zero, size: self.size).contains(trimRect) {
             if let imageRef = self.cgImage?.cropping(to: trimRect) {

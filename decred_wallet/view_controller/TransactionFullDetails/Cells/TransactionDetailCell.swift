@@ -8,8 +8,10 @@
 import UIKit
 
 class TransactionDetailCell: UITableViewCell {
+    
     @IBOutlet private weak var labelTitle: UILabel!
     @IBOutlet private weak var labelValue: UILabel!
+    
     var txnDetails: TransactionDetails? {
         didSet {
             showData()
@@ -23,7 +25,6 @@ class TransactionDetailCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
     
