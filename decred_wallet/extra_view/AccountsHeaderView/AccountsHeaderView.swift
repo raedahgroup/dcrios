@@ -12,7 +12,6 @@ class AccountsHeaderView: UIView {
     @IBOutlet private var labelTotalBalance: UILabel!
     @IBOutlet private var labelSpendableBalance: UILabel!
     @IBOutlet var expandOrCollapseDetailsButton: UIButton!
-    @IBOutlet weak var labelSpendable: UILabel!
     @IBOutlet weak var arrowDirection: UIButton!
     @IBOutlet weak var accountImg: UIImageView!
     @IBOutlet weak var background1: UIView!
@@ -34,14 +33,17 @@ class AccountsHeaderView: UIView {
     }
     
     @IBAction func expnandOrCollapseAction(_ sender: UIButton) {}
-    
     var spendableBalance: NSDecimalNumber = 0.0 {
         willSet {
-            
-
             DispatchQueue.main.async {[weak self] in
                 if(UserDefaults.standard.bool(forKey: "synced")){
-                self?.labelSpendableBalance.attributedText = getAttributedString(str: "\(newValue)", siz: 11.0, TexthexColor: self!.spendableColor)
+                    let spendableTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(hex: "#8997A5")]
+                    let spendableTextattr =  NSMutableAttributedString(string: "Spendable ", attributes: spendableTextAttributes)
+                    let amount = getAttributedString(str: "\(newValue)", siz: 9.0, TexthexColor: self!.spendableColor)
+                    let combination = NSMutableAttributedString()
+                    combination.append(spendableTextattr)
+                    combination.append(amount)
+                self?.labelSpendableBalance.attributedText = combination
                 }
             }
         }
@@ -53,13 +55,20 @@ class AccountsHeaderView: UIView {
     func syncing(status: Bool){
         if(status){
             syncIndicate.loadGif(name: "progress bar-1s-200px")
-            labelSpendableBalance.text = "-"
+            let spendableTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(hex: "#8997A5")]
+            let spendableTextattr =  NSMutableAttributedString(string: "Spendable ", attributes: spendableTextAttributes)
+            let AmountText = "-"
+            let amountTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor(hex: "#2DD8A3")]
+            let amountTextattr =  NSMutableAttributedString(string: AmountText, attributes: amountTextAttributes)
+            let combination = NSMutableAttributedString()
+            combination.append(spendableTextattr)
+            combination.append(amountTextattr)
+            labelSpendableBalance.attributedText = combination
         }
         else{
             syncIndicate.image = nil
             syncIndicate.isHidden = true
             labelTotalBalance.isHidden = false
-            labelSpendable.isHidden = false
         }
     }
     

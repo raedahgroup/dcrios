@@ -28,10 +28,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ipD-e1-fPk">
-                            <rect key="frame" x="0.0" y="0.0" width="206.5" height="72"/>
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="72"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b82-E1-gbo">
-                                    <rect key="frame" x="69" y="36" width="129.5" height="0.0"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="b82-E1-gbo">
+                                    <rect key="frame" x="69" y="36" width="103" height="0.0"/>
                                     <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="18"/>
                                     <color key="textColor" red="0.035294117647058823" green="0.078431372549019607" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
@@ -70,28 +70,22 @@
                             </constraints>
                         </view>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Fl-P6-MXy">
-                            <rect key="frame" x="206.5" y="0.0" width="168.5" height="72"/>
+                            <rect key="frame" x="180" y="0.0" width="195" height="72"/>
                             <subviews>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32h-wD-gkx">
-                                    <rect key="frame" x="8" y="21" width="146.5" height="18"/>
+                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="32h-wD-gkx">
+                                    <rect key="frame" x="8" y="21" width="173" height="18"/>
                                     <fontDescription key="fontDescription" name="Inconsolata-Regular" family="Inconsolata" pointSize="17"/>
                                     <color key="textColor" red="0.035294117647058823" green="0.078431372549019607" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cow-tc-f2n">
-                                    <rect key="frame" x="148" y="40.5" width="6.5" height="14"/>
-                                    <fontDescription key="fontDescription" name="Inconsolata-Regular" family="Inconsolata" pointSize="13"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="cow-tc-f2n">
+                                    <rect key="frame" x="175" y="40.5" width="6" height="13"/>
+                                    <fontDescription key="fontDescription" name="Inconsolata-Regular" family="Inconsolata" pointSize="12"/>
                                     <color key="textColor" red="0.1764705882352941" green="0.84705882352941175" blue="0.63921568627450975" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spendable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEt-qF-R8C">
-                                    <rect key="frame" x="92" y="39" width="54" height="15.5"/>
-                                    <fontDescription key="fontDescription" name="SourceSansPro-Regular" family="Source Sans Pro" pointSize="12"/>
-                                    <color key="textColor" red="0.53725490196078429" green="0.59215686274509804" blue="0.6470588235294118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oNh-W0-xi1">
-                                    <rect key="frame" x="105" y="8" width="50" height="31"/>
+                                    <rect key="frame" x="131.5" y="8" width="50" height="30.5"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="50" id="9Aw-Ga-FzP"/>
                                     </constraints>
@@ -99,14 +93,12 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="cow-tc-f2n" firstAttribute="leading" secondItem="XEt-qF-R8C" secondAttribute="trailing" constant="2" id="9Gd-TI-hFR"/>
+                                <constraint firstItem="cow-tc-f2n" firstAttribute="top" secondItem="oNh-W0-xi1" secondAttribute="bottom" constant="2" id="9Vb-8t-gyN"/>
                                 <constraint firstAttribute="trailing" secondItem="oNh-W0-xi1" secondAttribute="trailing" constant="13.5" id="AHN-Yb-gGs"/>
                                 <constraint firstItem="cow-tc-f2n" firstAttribute="top" secondItem="32h-wD-gkx" secondAttribute="bottom" constant="1.5" id="Hza-37-2Q9"/>
-                                <constraint firstItem="XEt-qF-R8C" firstAttribute="bottom" secondItem="cow-tc-f2n" secondAttribute="bottom" id="JLM-el-tle"/>
                                 <constraint firstAttribute="trailing" secondItem="32h-wD-gkx" secondAttribute="trailing" constant="14" id="K3r-R8-Y5O"/>
                                 <constraint firstItem="cow-tc-f2n" firstAttribute="trailing" secondItem="32h-wD-gkx" secondAttribute="trailing" id="LZp-a3-nzK"/>
                                 <constraint firstItem="oNh-W0-xi1" firstAttribute="top" secondItem="5Fl-P6-MXy" secondAttribute="top" constant="8" id="aE6-DE-T42"/>
-                                <constraint firstItem="XEt-qF-R8C" firstAttribute="top" secondItem="oNh-W0-xi1" secondAttribute="bottom" id="aX8-Ob-vIo"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cow-tc-f2n" secondAttribute="bottom" constant="15" id="awo-IQ-3g5"/>
                                 <constraint firstItem="32h-wD-gkx" firstAttribute="leading" secondItem="5Fl-P6-MXy" secondAttribute="leading" constant="8" id="hvE-Ah-0qj"/>
                                 <constraint firstItem="32h-wD-gkx" firstAttribute="top" secondItem="5Fl-P6-MXy" secondAttribute="top" constant="21" id="yB5-fi-Za0"/>
@@ -114,7 +106,7 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="ipD-e1-fPk" firstAttribute="width" secondItem="5HR-QN-iia" secondAttribute="width" multiplier="0.55" id="7L5-j2-BLx"/>
+                        <constraint firstItem="ipD-e1-fPk" firstAttribute="width" secondItem="5HR-QN-iia" secondAttribute="width" multiplier="0.48" id="7L5-j2-BLx"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="5uB-JW-QYy"/>
                 </stackView>
@@ -134,7 +126,6 @@
                 <outlet property="background1" destination="ipD-e1-fPk" id="pXb-mM-YW0"/>
                 <outlet property="background2" destination="5Fl-P6-MXy" id="bnB-BZ-ODj"/>
                 <outlet property="expandOrCollapseDetailsButton" destination="ftL-zJ-ymV" id="x4E-PD-das"/>
-                <outlet property="labelSpendable" destination="XEt-qF-R8C" id="CfF-om-FwH"/>
                 <outlet property="labelSpendableBalance" destination="cow-tc-f2n" id="EnZ-Nv-aAU"/>
                 <outlet property="labelTitle" destination="b82-E1-gbo" id="xlJ-gC-Vtz"/>
                 <outlet property="labelTotalBalance" destination="32h-wD-gkx" id="TYA-r3-Zvc"/>
