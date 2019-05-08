@@ -96,8 +96,8 @@ class TransactiontOutputDetailsCell: UITableViewCell {
             //Copy a string to the pasteboard.
             UIPasteboard.general.string = sender.titleLabel?.text
             //Alert
-            let alertController = UIAlertController(title: "", message: "Address copied!", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            let alertController = UIAlertController(title: "", message: "Address copied!", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.presentingController.present(alertController, animated: true, completion: nil)
         }
     }

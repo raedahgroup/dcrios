@@ -14,7 +14,8 @@ extension String {
     }
     
     func substring(_ from: Int) -> String {
-        return self.substring(from: self.index(self.startIndex, offsetBy: from))
+        let fromIndex = self.index(self.startIndex, offsetBy: from)
+        return String(self[fromIndex...])
     }
     
     var length: Int {

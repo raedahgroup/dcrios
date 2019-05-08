@@ -31,7 +31,7 @@ class CreateNewWalletViewController: UIViewController {
         var generateSeedError: NSError?
         self.seed =  (SingleInstance.shared.wallet?.generateSeed(&generateSeedError))
         if generateSeedError != nil {
-            print("seed generate error: \(generateSeedError?.localizedDescription)")
+            print("seed generate error: \(String(describing: generateSeedError?.localizedDescription))")
         }
         
         arrWords = (seed.components(separatedBy: " "))

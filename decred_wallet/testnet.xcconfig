@@ -20,7 +20,7 @@ PODS_ROOT = ${SRCROOT}/Pods
 
 APP_NAME = Decred Wallet Testnet
 APP_ICON = AppIconTestnet
-APP_BUNDLE_ID = com.dcrios.testnet
+APP_BUNDLE_ID = com.decred.dcrios.testnet3
 IS_TESTNET = true
 TicketMaturity = 16
 TargetTimePerBlock = 120

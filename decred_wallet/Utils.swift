@@ -23,7 +23,7 @@ func isWalletCreated() -> Bool{
 
 func showMsg(error:String,controller: UIViewController){
     let alert = UIAlertController(title: "PIN mismatch", message: error, preferredStyle: .alert)
-    let okAction = UIAlertAction(title: "Try again", style: UIAlertActionStyle.default, handler: nil)
+    let okAction = UIAlertAction(title: "Try again", style: UIAlertAction.Style.default, handler: nil)
     alert.addAction(okAction)
     DispatchQueue.main.async {
         controller.present(alert, animated: true, completion: nil)
@@ -217,7 +217,7 @@ func getAttributedString(str: String, siz: CGFloat, TexthexColor: UIColor) -> NS
     else if(tmpString.length > ((dotRange?.location)!+2)) {
         atrStr.append(NSMutableAttributedString(string: " DCR"))
         stt = (stt?.appending(((" DCR")))) as NSString?
-        atrStr.addAttribute(NSAttributedStringKey.font,
+        atrStr.addAttribute(NSAttributedString.Key.font,
                             value: UIFont(
                                 name: "Inconsolata-Regular",
                                 size: siz)!,
@@ -225,7 +225,7 @@ func getAttributedString(str: String, siz: CGFloat, TexthexColor: UIColor) -> NS
                                 location:(dotRange?.location)!+3,
                                 length:(stt?.length)!-1 - ((dotRange?.location)!+2)))
         
-        atrStr.addAttribute(NSAttributedStringKey.foregroundColor,
+        atrStr.addAttribute(NSAttributedString.Key.foregroundColor,
                             value: TexthexColor,
                             range: NSRange(
                                  location:0,

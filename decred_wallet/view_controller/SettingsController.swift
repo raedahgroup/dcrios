@@ -274,8 +274,8 @@ class SettingsController: UITableViewController  {
             } catch {
                 DispatchQueue.main.async {
                     progressHud.dismiss()
-                    let alertController = UIAlertController(title: "", message: "Passphrase was not valid.", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    let alertController = UIAlertController(title: "", message: "Passphrase was not valid.", preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     this.present(alertController, animated: true, completion: nil)
                 }
             }

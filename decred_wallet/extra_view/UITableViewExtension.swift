@@ -34,13 +34,13 @@ public extension UITableView {
     }
     
     /// Hides extra rows created by UIKit with no data to display.
-    @discardableResult public func hideEmptyAndExtraRows() -> UITableView {
+    @discardableResult func hideEmptyAndExtraRows() -> UITableView {
         tableFooterView = UIView()
         return self
     }
     
-    @discardableResult public func autoResizeCell(estimatedHeight _estimatedHeight: CGFloat = 100.0) -> UITableView {
-        rowHeight = UITableViewAutomaticDimension
+    @discardableResult func autoResizeCell(estimatedHeight _estimatedHeight: CGFloat = 100.0) -> UITableView {
+        rowHeight = UITableView.automaticDimension
         estimatedRowHeight = _estimatedHeight
         return self
     }
@@ -50,17 +50,17 @@ public extension UITableView {
 public extension Bool {
     
     /// SwifterSwift: Return 1 if true, or 0 if false.
-    public var int: Int {
+    var int: Int {
         return self ? 1 : 0
     }
     
     /// SwifterSwift: Return "true" if true, or "false" if false.
-    public var string: String {
+    var string: String {
         return description
     }
     
     /// SwifterSwift: Return inversed value of bool.
-    public var toggled: Bool {
+    var toggled: Bool {
         return !self
     }
 }
@@ -72,7 +72,7 @@ public extension Bool {
     /// SwifterSwift: Toggle value for bool.
     ///
     /// - Returns: inversed value of bool.
-    @discardableResult public mutating func toggles() -> Bool {
+    @discardableResult mutating func toggles() -> Bool {
         self = !self
         return self
     }

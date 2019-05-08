@@ -41,7 +41,7 @@ extension UIViewController {
     @discardableResult public func backButton() -> UIViewController {
         let backArrowImage = #imageLiteral(resourceName: "left-arrow")
         navigationItem.hidesBackButton = true
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backArrowImage, style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.navigateToBackScreen))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backArrowImage, style: UIBarButtonItem.Style.plain, target: self, action: #selector(self.navigateToBackScreen))
         return self
     }
     

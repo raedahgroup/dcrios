@@ -5,7 +5,7 @@ PODS:
   - Fabric (1.9.0)
   - JGProgressHUD (2.0.3)
   - MBProgressHUD (1.1.0)
-  - QRCodeReader.swift (10.0.0)
+  - QRCodeReader.swift (10.1.0)
   - SlideMenuControllerSwift (4.0.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - MBProgressHUD
   - QRCodeReader.swift
-  - SlideMenuControllerSwift
+  - SlideMenuControllerSwift (from `https://github.com/itswisdomagain/SlideMenuControllerSwift.git`, branch `swift5`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -25,7 +25,16 @@ SPEC REPOS:
     - JGProgressHUD
     - MBProgressHUD
     - QRCodeReader.swift
-    - SlideMenuControllerSwift
+
+EXTERNAL SOURCES:
+  SlideMenuControllerSwift:
+    :branch: swift5
+    :git: https://github.com/itswisdomagain/SlideMenuControllerSwift.git
+
+CHECKOUT OPTIONS:
+  SlideMenuControllerSwift:
+    :commit: d61e2a3bfaf8b6c0727667add98e40571728503f
+    :git: https://github.com/itswisdomagain/SlideMenuControllerSwift.git
 
 SPEC CHECKSUMS:
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
@@ -33,9 +42,9 @@ SPEC CHECKSUMS:
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
-  QRCodeReader.swift: 74d0378eb0c7807828552b49626bbc8307495aee
-  SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
+  QRCodeReader.swift: 373a389fe9a22d513c879a32a6f647c58f4ef572
+  SlideMenuControllerSwift: f9ec1ad1a95d211324d25b15dcdbc94881596716
 
-PODFILE CHECKSUM: 38ee43f1a5d00148f409e43591d4f2db8be6285f
+PODFILE CHECKSUM: 90a2a91513fab5bc604856282ff3a8dc619010bc
 
 COCOAPODS: 1.6.1

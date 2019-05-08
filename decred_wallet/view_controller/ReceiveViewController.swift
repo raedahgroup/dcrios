@@ -98,7 +98,7 @@ class ReceiveViewController: UIViewController,UIDocumentInteractionControllerDel
         self.account?.Acc.removeAll()
         do{
             var getAccountError: NSError?
-            let strAccount = try self.wallet?.getAccounts(0, error: &getAccountError)
+            let strAccount = self.wallet?.getAccounts(0, error: &getAccountError)
             if getAccountError != nil {
                 throw getAccountError!
             }
@@ -133,8 +133,8 @@ class ReceiveViewController: UIViewController,UIDocumentInteractionControllerDel
             UIPasteboard.general.string = self.lblWalletAddress.text!
             
             //Alert
-            let alertController = UIAlertController(title: "", message: "Wallet address copied", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            let alertController = UIAlertController(title: "", message: "Wallet address copied", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
     }
@@ -157,7 +157,7 @@ class ReceiveViewController: UIViewController,UIDocumentInteractionControllerDel
             
             accountDropdown.setTitle(
                 defaultAccount.Name,
-                for: UIControlState.normal
+                for: UIControl.State.normal
             )
             self.accountDropdown.backgroundColor = UIColor.white
         }

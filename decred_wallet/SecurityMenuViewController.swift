@@ -359,8 +359,8 @@ class SecurityMenuViewController: UIViewController,UITextFieldDelegate {
             } catch {
                 DispatchQueue.main.async {
                     self!.progressHud?.dismiss()
-                    let alertController = UIAlertController(title: "", message: "Password entered was not valid.", preferredStyle: UIAlertControllerStyle.alert)
-                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    let alertController = UIAlertController(title: "", message: "Password entered was not valid.", preferredStyle: UIAlertController.Style.alert)
+                    alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                     this.present(alertController, animated: true, completion: nil)
                 }
             }
@@ -389,8 +389,8 @@ class SecurityMenuViewController: UIViewController,UITextFieldDelegate {
             UIPasteboard.general.string = info
             
             //Alert
-            let alertController = UIAlertController(title: "", message: "Copied successfully.", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            let alertController = UIAlertController(title: "", message: "Copied successfully.", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated: true, completion: nil)
         }
     }

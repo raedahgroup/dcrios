@@ -93,7 +93,7 @@ class TransactionHistoryTableViewCell: BaseTableViewCell {
                     let stausText = "Confirmed / Live"
                     let range = (stausText as NSString).range(of: "/")
                     let attributedString = NSMutableAttributedString(string: stausText)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black , range: range)
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: range)
                     self.txtTrStatus.textColor = UIColor(hex:"#2DD8A3")
                     self.txtTrStatus.attributedText = attributedString
                 }
@@ -101,7 +101,7 @@ class TransactionHistoryTableViewCell: BaseTableViewCell {
                     let stausText = "Confirmed / Immature"
                     let range = (stausText as NSString).range(of: "/")
                     let attributedString = NSMutableAttributedString(string: stausText)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black , range: range)
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: range)
                      self.trImage?.image = UIImage(named: "live")
                     self.txtTrStatus.textColor = UIColor.orange
                     self.txtTrStatus.attributedText = attributedString

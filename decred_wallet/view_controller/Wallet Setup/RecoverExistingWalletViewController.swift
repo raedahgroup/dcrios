@@ -47,17 +47,17 @@ class RecoverExistingWalletViewController: WalletSetupBaseViewController, UITabl
     }
     
     func registerObserverForKeyboardNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func unregisterObserverForKeyboardNotification() {
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIKeyboardWillShow, object:nil)
-        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIKeyboardWillHide, object:nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object:nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object:nil)
     }
     
     @objc func onKeyboardWillShow(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let window = self.view.window?.frame {
             // Minusing keyboard height from window height
             self.view.frame = CGRect(x: self.view.frame.origin.x,
@@ -187,7 +187,7 @@ class RecoverExistingWalletViewController: WalletSetupBaseViewController, UITabl
     }
     
     private func validateSeed() -> (seed: String, valid: Bool) {
-        let seed = self.userEnteredSeedWords.reduce("", {(word1, word2) in "\(word1!) \(word2)"})
+        let seed = self.userEnteredSeedWords.reduce("", {(word1, word2) in "\(word1) \(word2)"})
         let seedValid = SingleInstance.shared.wallet?.verifySeed(seed)
         return (seed, seedValid!)
     }

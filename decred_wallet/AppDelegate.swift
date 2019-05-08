@@ -124,14 +124,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.window?.makeKeyAndVisible()
     }
 
-    func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplicationExtensionPointIdentifier) -> Bool {
-        if extensionPointIdentifier == UIApplicationExtensionPointIdentifier.keyboard {
+    func application(_ application: UIApplication, shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier) -> Bool {
+        if extensionPointIdentifier == UIApplication.ExtensionPointIdentifier.keyboard {
             return false
         }
         return true
     }
     
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // setup crash reporting for testnet build only
         let isTestnet = Bool(infoForKey(GlobalConstants.Strings.IS_TESTNET)!)!

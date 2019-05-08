@@ -14,7 +14,7 @@ class TransactionHistoryViewController: UIViewController, DcrlibwalletGetTransac
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action:
             #selector(TransactionHistoryViewController.handleRefresh(_:)),
-                                 for: UIControlEvents.valueChanged)
+                                 for: UIControl.Event.valueChanged)
         refreshControl.tintColor = UIColor.lightGray
         
         return refreshControl
@@ -94,7 +94,7 @@ class TransactionHistoryViewController: UIViewController, DcrlibwalletGetTransac
         }
     }
     
-    func onResult(_ json: String!) {
+    func onResult(_ json: String?) {
         
         if (self.visible == false) {
             return
@@ -103,7 +103,7 @@ class TransactionHistoryViewController: UIViewController, DcrlibwalletGetTransac
                 guard let this = self else { return }
                 do {
                     let trans = GetTransactionResponse.self
-                    let transactions = try JSONDecoder().decode(trans, from: json.data(using: .utf8)!)
+                    let transactions = try JSONDecoder().decode(trans, from: (json?.data(using: .utf8)!)!)
                     if (transactions.Transactions.count) > 0 {
                         if (transactions.Transactions.count > this.Filtercontent.count) {
                             print(this.Filtercontent.count)

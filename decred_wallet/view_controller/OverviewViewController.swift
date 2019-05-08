@@ -69,7 +69,7 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
             let refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action:
                 #selector(OverviewViewController.handleRefresh(_:)),
-                                     for: UIControlEvents.valueChanged)
+                                     for: UIControl.Event.valueChanged)
             refreshControl.tintColor = UIColor.lightGray
             
             return refreshControl
@@ -312,7 +312,7 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
     }
     var count = 0
     @objc func longPressHappened(gesture: UILongPressGestureRecognizer){
-         if gesture.state == UIGestureRecognizerState.began {
+        if gesture.state == UIGestureRecognizer.State.began {
                 if !(self.showAllSyncInfo){
                 self.ShowAllSync()
                     self.showAllSyncInfo = true
@@ -348,7 +348,7 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
     }
     
     
-    func onResult(_ json: String!) {
+    func onResult(_ json: String?) {
         if (self.visible == false) {
             return
         } else {
@@ -379,9 +379,9 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
         }
     }
     
-    func onSyncError(_ code: Int, err: Error!) {
+    func onSyncError(_ code: Int, err: Error?) {
         print("sync error")
-        print(err)
+        print(err!)
     }
     
     func onSynced(_ synced: Bool) {
@@ -458,10 +458,10 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
     }
     
     func onBlockNotificationError(_ err: Error!) {
-        print(err)
+        print(err!)
     }
     
-    func onTransactionConfirmed(_ hash: String!, height: Int32) {
+    func onTransactionConfirmed(_ hash: String?, height: Int32) {
         if(visible == true){
             self.prepareRecent()
             updateCurrentBalance()
@@ -486,10 +486,10 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
         print("refresh")
     }
     
-    func onTransaction(_ transaction: String!) {
+    func onTransaction(_ transaction: String?) {
         
         print("New transaction for onTransaction")
-        var transactions = try! JSONDecoder().decode(Transaction.self, from:transaction.data(using: .utf8)!)
+        var transactions = try! JSONDecoder().decode(Transaction.self, from:(transaction?.data(using: .utf8)!)!)
         
         if(self.mainContens.contains(where: { $0.Hash == transactions.Hash })){
             return
@@ -546,10 +546,10 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
         }
     }
     
-    func onFetchMissingCFilters(_ missingCFitlersStart: Int32, missingCFitlersEnd: Int32, state: String!) {}
+    func onFetchMissingCFilters(_ missingCFitlersStart: Int32, missingCFitlersEnd: Int32, state: String?) {}
     
     var headerTime: Int64 = 0
-    func onFetchedHeaders(_ fetchedHeadersCount: Int32, lastHeaderTime: Int64, state: String!) {
+    func onFetchedHeaders(_ fetchedHeadersCount: Int32, lastHeaderTime: Int64, state: String?) {
         DispatchQueue.global(qos: .background).async {
         if (!self.walletInfo.syncing) {
             // Ignore this call because this function gets called for each peer and
@@ -669,7 +669,7 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
     }
     
     
-    func onRescan(_ rescannedThrough: Int32, state: String!) {
+    func onRescan(_ rescannedThrough: Int32, state: String?) {
         DispatchQueue.global(qos: .background).async {
         if (self.walletInfo.syncEndPoint == -1) {
             self.walletInfo.syncEndPoint = Int64(self.wallet!.getBestBlock());
@@ -730,7 +730,7 @@ class OverviewViewController: UIViewController, DcrlibwalletGetTransactionsRespo
         }
     }
     
-    func onError(_ err: String!) {}
+    func onError(_ err: String?) {}
     
     func onDiscoveredAddresses(_ state: String?) {
        // setChainStatus(null);

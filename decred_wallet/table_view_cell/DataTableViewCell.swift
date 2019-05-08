@@ -101,7 +101,7 @@ class DataTableViewCell : BaseTableViewCell {
                     let statusText = "Confirmed / Live"
                     let range = (statusText as NSString).range(of: "/")
                     let attributedString = NSMutableAttributedString(string: statusText)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black , range: range)
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: range)
                     self.status.textColor = UIColor(hex:"#2DD8A3")
                     self.status.attributedText = attributedString
                     self.dataImage?.image = UIImage(named: "live")
@@ -109,7 +109,7 @@ class DataTableViewCell : BaseTableViewCell {
                     let statusText = "Confirmed / Immature"
                     let range = (statusText as NSString).range(of: "/")
                     let attributedString = NSMutableAttributedString(string: statusText)
-                    attributedString.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.black , range: range)
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.black , range: range)
 
                     self.status.textColor = UIColor.orange
                     self.status.attributedText = attributedString

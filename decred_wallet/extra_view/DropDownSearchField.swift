@@ -91,7 +91,7 @@ class DropDownSearchField: UITextField, UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         self.dropDownListPlaceholder?.isHidden = true
         self.dropDownTable?.removeFromSuperview()
         self.onTextChanged?()

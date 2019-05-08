@@ -121,17 +121,17 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         let messageText = NSMutableAttributedString(
             string: message!,
             attributes: [
-                NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                NSAttributedStringKey.font : UIFont.preferredFont(forTextStyle: UIFontTextStyle.body),
-                NSAttributedStringKey.foregroundColor : UIColor.black
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body),
+                NSAttributedString.Key.foregroundColor : UIColor.black
             ]
         )
         let titleText = NSMutableAttributedString(
             string: title!,
             attributes: [
-                NSAttributedStringKey.paragraphStyle: paragraphStyle,
-                NSAttributedStringKey.font : UIFont.preferredFont(forTextStyle: UIFontTextStyle.title3),
-                NSAttributedStringKey.foregroundColor : UIColor.black
+                NSAttributedString.Key.paragraphStyle: paragraphStyle,
+                NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: UIFont.TextStyle.title3),
+                NSAttributedString.Key.foregroundColor : UIColor.black
             ]
         )
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

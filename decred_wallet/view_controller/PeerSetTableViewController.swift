@@ -60,8 +60,8 @@ class PeerSetTableViewController: UITableViewController {
     
     func showMessage(title: String,userMessage : String, buttonTitle button:String) {
         
-        let uiAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertControllerStyle.alert)
-        let uiAction = UIAlertAction(title: button, style: UIAlertActionStyle.default, handler: nil)
+        let uiAlert = UIAlertController(title: title, message: userMessage, preferredStyle: UIAlertController.Style.alert)
+        let uiAction = UIAlertAction(title: button, style: UIAlertAction.Style.default, handler: nil)
         
         uiAlert.addAction(uiAction)
         
@@ -70,7 +70,7 @@ class PeerSetTableViewController: UITableViewController {
     
     func isValidIP(s: String) -> Bool {
         let parts = s.components(separatedBy: ".")
-        let nums = parts.flatMap { Int($0) }
+        let nums = parts.compactMap { Int($0) }
         return parts.count == 4 && nums.count == 4 && nums.filter { $0 >= 0 && $0 < 256}.count == 4
     }
 }

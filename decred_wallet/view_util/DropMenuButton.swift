@@ -157,9 +157,9 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState())
-        setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState.highlighted)
-        setTitle(items[(indexPath as NSIndexPath).row], for: UIControlState.selected)
+        setTitle(items[(indexPath as NSIndexPath).row], for: UIControl.State())
+        setTitle(items[(indexPath as NSIndexPath).row], for: UIControl.State.highlighted)
+        setTitle(items[(indexPath as NSIndexPath).row], for: UIControl.State.selected)
         
         act?(indexPath.row, items[indexPath.row])
         
@@ -183,7 +183,7 @@ class DropMenuButton: UIButton, UITableViewDelegate, UITableViewDataSource
         let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: frame.width, height: frame.height))
         cell.backgroundColor = UIColor.white
         cell.selectedBackgroundView = bgColorView
-        cell.separatorInset = UIEdgeInsetsMake(0, frame.width, 0, frame.width)
+        cell.separatorInset = UIEdgeInsets(top: 0, left: frame.width, bottom: 0, right: frame.width)
         cell.addSubview(itemLabel)
         
         return cell
